@@ -1,5 +1,5 @@
 FROM phusion/baseimage:0.9.18
-MAINTAINER Oscar Perez Fuentes <oscar@xmltravelgate.com>
+MAINTAINER Miquel Barbero <mbarbero@xmltravelgate.com>
 
 #
 # Follow the server installation parameters specified on the OSSEC website for
@@ -21,12 +21,7 @@ RUN service ossec restart &&\
   service ossec stop &&\
   echo -n "" /var/ossec/logs/ossec.log
 
-
-
 ##Elastic FileBeat configuration
-
-
-
 #
 # Initialize the data volume configuration
 #
