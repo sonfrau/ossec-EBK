@@ -129,11 +129,10 @@ function ossec_shutdown(){
 trap "ossec_shutdown; exit" SIGINT SIGTERM
 
 
-
-
 #
 # Startup the services
 #
+# OSSES service
 chmod -R g+rw ${DATA_PATH}/logs/ ${DATA_PATH}/stats/ ${DATA_PATH}/queue/ ${DATA_PATH}/etc/client.keys
 chown -R ossec:ossec /var/ossec/
 /var/ossec/bin/ossec-control start
@@ -146,8 +145,6 @@ fi
 sleep 15 # give ossec a reasonable amount of time to start before checking status
 LAST_OK_DATE=`date +%s`
 
-
-
 #
 # Watch the service in a while loop, exit if the service exits
 #
@@ -158,6 +155,9 @@ if [ $SMTP_ENABLED == true ]
 then
   STATUS_CMD="/var/ossec/bin/ossec-control status | sed '/ossec-execd/d' | grep ' not running' | test -z"
 fi
+
+# Filebeat service
+/etc/init.d/filebeat start
 
 while true
 do
