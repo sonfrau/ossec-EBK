@@ -46,7 +46,13 @@ VOLUME ["/var/ossec/data"]
 # Expose ports for sharing (Ossec ports)
 EXPOSE 1514/udp 1515/tcp
 
+#
+# Download and install Elastic Filebeat
+RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.2.2-amd64.deb
+RUN sudo dpkg -i filebeat-5.2.2-amd64.deb
+#
 # Add customized filebeat.yml configuration file
+#
 ADD filebeat.yml /etc/filebeat/filebeat.yml
 
 #
