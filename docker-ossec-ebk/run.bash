@@ -156,7 +156,9 @@ then
   STATUS_CMD="/var/ossec/bin/ossec-control status | sed '/ossec-execd/d' | grep ' not running' | test -z"
 fi
 
+#
 # Filebeat service
+#
 /etc/init.d/filebeat start
 
 while true
