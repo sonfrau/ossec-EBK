@@ -46,6 +46,9 @@ VOLUME ["/var/ossec/data"]
 # Expose ports for sharing (Ossec ports)
 EXPOSE 1514/udp 1515/tcp
 
+# Add customized filebeat.yml configuration file
+ADD filebeat.yml /etc/filebeat/filebeat.yml
+
 #
 # Define default command.
 #
