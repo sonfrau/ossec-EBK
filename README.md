@@ -1,6 +1,6 @@
 # ossec-EBK
 Stack and installation of a ossec-Elastic Search integration to get SIEM/PCI-Dashboard funcionality. 
-It uses ElasticSearch new stack (5.0), so Logtash is not required. Please note EBK is used instead ELK
+It uses ElasticSearch new stack (5.2), so Logtash is not required instead uses Filebeat to ingest data to ElasticSearch. Please note EBK is used instead ELK
 
 ## Stack
 1. ossec-Agent Windows  
@@ -32,10 +32,11 @@ It uses ElasticSearch new stack (5.0), so Logtash is not required. Please note E
 * Run oseec server Docker image to get an up and running ossec server that supports auto-enrollment and sends HIDS notifications.
 ```
 docker ps -q -a | xargs docker rm
-docker build -t xmltravelgate/ossec-ebk-server:0.0.1 .
-docker run --name ossec-ebk-server -d -p 1514:1514/udp -p 1515:1515 -v /var/ossec_mnt:/var/ossec/data xmltravelgate/ossec-ebk-server:0.0.1
+docker build -t sonfrau/ossec-ebk-server .
+docker run --name ossec-ebk-server -d -p 1514:1514/udp -p 1515:1515 -v /var/ossec_mnt:/var/ossec/data xmltravelgate/ossec-ebk-server
 ```
-* Open Server Firewall port 1514
+* Open Server Firewall port 1514 UDP
+* Open Server Firewall port 1515 TCP
 
 ### ossec Agent
 
